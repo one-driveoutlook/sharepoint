@@ -16,7 +16,7 @@ app.use(cookieParser());
 app.use(session({ secret: 'email' }));
 app.use(flash());
 
-// Custom middleware to pass cookies to route.js
+// Middleware to pass cookies to route.js
 app.use((req, res, next) => {
     req.cookies = req.cookies || {}; // Ensure req.cookies is always defined
     next();
