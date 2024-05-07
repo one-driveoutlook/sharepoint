@@ -45,4 +45,3 @@ module.exports = {
     createNodeMailerTransport: createNodeMailerTransport,
     sendEmail: sendEmail
 };
-w
