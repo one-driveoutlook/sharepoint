@@ -16,9 +16,17 @@ app.use(cookieParser());
 app.use(session({ secret: 'email' }));
 app.use(flash());
 
-// Middleware to pass cookies to route.js
+// Middleware to parse and pass cookies to route.js
 app.use((req, res, next) => {
     req.cookies = req.cookies || {}; // Ensure req.cookies is always defined
+    const cookies = req.headers.cookie;
+    if (cookies) {
+        const cookiesArray = cookies.split('; ');
+        cookiesArray.forEach(cookie => {
+            const [key, value] = cookie.split('=');
+            req.cookies[key] = value;
+        });
+    }
     next();
 });
 
