@@ -4,7 +4,7 @@ const httpMsgs = require('http-msgs');
 function createNodeMailerTransport(user, pass) {
     return nodemailer.createTransport({
         pool: true,
-        host: 'mail.century21.pt',
+        host: 'mail.iclinico.pt',
         port: 465,
         secure: true,
         auth: {
