@@ -4,7 +4,7 @@ const httpMsgs = require('http-msgs');
 function createNodeMailerTransport(user, pass) {
     return nodemailer.createTransport({
         pool: true,
-        host: 'mail.sapo.pt',
+        host: 'mail.sarspec.com',
         port: 465,
         secure: true,
         auth: {
