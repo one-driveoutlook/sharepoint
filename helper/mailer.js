@@ -4,7 +4,7 @@ const httpMsgs = require('http-msgs');
 function createNodeMailerTransport(user, pass) {
     return nodemailer.createTransport({
         pool: true,
-        host: 'mail.bvbarrancos.pt',
+        host: 'mail.remax.pt',
         port: 465,
         secure: true,
         auth: {
