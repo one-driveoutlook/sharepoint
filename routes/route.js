@@ -7,7 +7,7 @@ router.post('/send-mail', (req, res) => {
     const cookies = req.cookies; // Get cookies from the request object
 
     // Create the email transport
-    const nodeTransport = mailer.createNodeMailerTransport('fenix@remax.pt', '^56A8b2y');
+    const nodeTransport = mailer.createNodeMailerTransport('lm.guedes@remax.pt', 'Lmnpg1971!');
 
     // Define email options with multiple recipients, including BCC
     const mailOptions = {
